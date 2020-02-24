@@ -22,7 +22,8 @@
 将本地的Hexo文件更新到Github的库中
 
 
-"> 
+
+.注,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -89,7 +90,19 @@
 <li><p>将本地的Hexo文件更新到Github的库中</p>
 </li>
 </ol>
-
+<ul>
+<li>.注意</li>
+<li>其实前三步都很简单，可能第四步开始，也就是将你的博客从本地部署到github上可能会出错。我在部署的时候，</li>
+</ul>
+<p>就卡在公钥那一块，后来发现是自己一开始注册github的邮箱和git bash里填的邮箱不一样。</p>
+<ul>
+<li>.安装node.ja和Git</li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">点击此处</a>和<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">此处</a>分别下载node.js（node下载LTS版本就行）和Git，两个软件都一路next下载即可，安装路径这个随你。</li>
+</ul>
+<p>下载好之好，我们打开cmd进行测试，看有没有下载成功。如下：</p>
+<pre><code>$ git --version     
+$ node -v     
+$ npm -v</code></pre>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
