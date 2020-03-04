@@ -482,7 +482,7 @@ $ hexo s</code></pre>
 <p>显示以下信息说明操作成功：</p>
 <p> -打开浏览器复制进入查看效果</p>
 <pre><code> INFO Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</code></pre><p><img src="5.jpg" alt=""></p>
-<p>做到这里，恭喜你，成功一半了:happy:</p>
+<p>做到这里，恭喜你，成功一半了</p>
 <h2 id="下面的具体任务是将本地博客部署到github上"><a href="#下面的具体任务是将本地博客部署到github上" class="headerlink" title=" . 下面的具体任务是将本地博客部署到github上"></a><font color=red > . 下面的具体任务是将本地博客部署到github上</font></h2><h4 id="1-注册github账号"><a href="#1-注册github账号" class="headerlink" title=" 1.注册github账号"></a><font color=red > 1.注册github账号</font></h4><p><a href="https://github.com/" target="_blank" rel="noopener">点击此处</a>访问 Github 官网，点击 Sign Up 注册账户</p>
 <h4 id="2-创建项目代码库"><a href="#2-创建项目代码库" class="headerlink" title=" 2.创建项目代码库"></a><font color=red > 2.创建项目代码库</font></h4><p>点击 New repository 开始创建，步骤及注意事项见下图：（库名一定要和用户名一样，否则容易出错）</p>
 <p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/EYDICoxiwewa.jpg?imageslim" alt="mark"></p>
@@ -521,13 +521,13 @@ $ hexo s</code></pre>
 <pre class=" language-javascript"><code class="language-javascript"> $ ssh <span class="token operator">-</span>T git@github<span class="token punctuation">.</span>com</code></pre>
 <p>​      之后会显示：</p>
 <p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/tIShSRrtkLlz.jpg?imageslim" alt="mark"></p>
-<p>​     回车即可，出现如下图就OK了:clinking_glasses:</p>
+<p>​     回车即可，出现如下图就OK了</p>
 <p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/3oJfzAvKjHIy.jpg?imageslim" alt="mark"></p>
 <h4 id="6-配置git个人信息"><a href="#6-配置git个人信息" class="headerlink" title=" 6. 配置git个人信息"></a><font color=red > 6. 配置git个人信息</font></h4><p>Git 会根据用户的名字和邮箱来记录提交，GitHub 也是用这些信息来做权限的处理，输入以下命令进行个人信息的设置，把名称和邮箱替换成你自己的，名字可以不是 GitHub 的昵称，但为了方便记忆，建议与 GitHub 一致</p>
 <pre class=" language-javascript"><code class="language-javascript"> $ git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>name <span class="token string">"此处填你的用户名"</span>  
  $ git config <span class="token operator">--</span>global user<span class="token punctuation">.</span>email  <span class="token string">"此处填你的邮箱"</span></code></pre>
 <p>到此为止 SSH Key 配置成功，本机已成功连接到 Github</p>
-<h4 id="7-将本地的Hexo文件更新到Github中"><a href="#7-将本地的Hexo文件更新到Github中" class="headerlink" title=" 7. 将本地的Hexo文件更新到Github中"></a><font color=red > 7. 将本地的Hexo文件更新到Github中</h4><p>登录 Github 打开自己的项目 your name.github.io</p>
+<h4 id="7-将本地的Hexo文件更新到Github中"><a href="#7-将本地的Hexo文件更新到Github中" class="headerlink" title=" 7. 将本地的Hexo文件更新到Github中"></a><font color=red > 7. 将本地的Hexo文件更新到Github中</font></h4><p>登录 Github 打开自己的项目 your name.github.io</p>
 <p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/AtzxfgWkR28d.jpg?imageslim" alt="mark"></p>
 <p>鼠标移到 Clone or download 按钮，选择 Use SSH</p>
 <p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Ueo0qvbNpqFN.png?imageslim" alt="mark"></p>
@@ -542,7 +542,8 @@ $ hexo s</code></pre>
  $ hexo d</code></pre><p>执行完之后会让你输入你的 Github 的账号和密码，如果此时报以下错误，说明你的 deployer 没有安装成功</p>
 <pre><code> ERROR Deployer not found: git</code></pre><p>需要执行以下命令再安装一次：</p>
 <pre><code> npm install hexo-deployer-git --save</code></pre><p>再执行hexo g 和hexo d两条命令，你的博客就会部署到 Github 上了。</p>
-<p>你的博客地址：https://你的用户名.github.io，比如我的是：<a href="https://ccit18081430115avicii.github.io" target="_blank" rel="noopener">https://ccit18081430115avicii.github.io</a> ,现在每个人都可以通过此链接访问你的博客了。:v:</p>
+<p>你的博客地址：https://你的用户名.github.io，比如我的是：<a href="https://ccit18081430115avicii.github.io" target="_blank" rel="noopener">https://ccit18081430115avicii.github.io</a> ,现在每个人都可以通过此链接访问你的博客了。</p>
+<h3 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h3><p>其实这玩意，没啥难的，网上遍地的教程，选择一个最适合自己的跟着做就行了。我一开始搭的时候，就卡在部署到github上，弄了有几个小时。。。<img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/huVBRDfU8LA5.jpg?imageslim" alt="mark">)后来上网各种百度，最后发现是在公钥那里出了问题，所以啊，做的时候一定不能着急，得一步步跟着教程做，要有耐心。贴上一张寒假的我：<img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/SAF9uah3ROhe.jpg?imageslim" alt="mark"></p>
 
             </div>
             <hr/>
