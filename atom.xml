@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://avicii.pro/"/>
-  <updated>2020-03-23T13:12:45.071Z</updated>
+  <updated>2020-03-24T13:06:26.706Z</updated>
   <id>http://avicii.pro/</id>
   
   <author>
@@ -17,59 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>要开学了</title>
-    <link href="http://avicii.pro/posts/27518.html"/>
-    <id>http://avicii.pro/posts/27518.html</id>
-    <published>2020-03-22T06:28:50.072Z</published>
-    <updated>2020-03-23T13:12:45.071Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;要开学了&quot;&gt;&lt;a href=&quot;#要开学了&quot; class=&quot;headerlink&quot; title=&quot;要开学了&quot;&gt;&lt;/a&gt;要开学了&lt;/h1&gt;&lt;p&gt;开学=GG&lt;/p&gt;
-&lt;p&gt;这学期学的内容，都是单片机相关。STM32、AD、51单片机。头大哦&lt;img
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>daily</title>
-    <link href="http://avicii.pro/posts/51794.html"/>
-    <id>http://avicii.pro/posts/51794.html</id>
-    <published>2020-02-22T14:13:18.125Z</published>
-    <updated>2020-03-23T13:12:45.081Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;一代人终将老去，但总有人正年轻&quot;&gt;&lt;a href=&quot;#一代人终将老去，但总有人正年轻&quot; class=&quot;headerlink&quot; title=&quot;一代人终将老去，但总有人正年轻!&quot;&gt;&lt;/a&gt;一代人终将老去，但总有人正年轻!&lt;/h1&gt;&lt;script&gt;
-       
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>详解Hexo搭建博客及部署到Github</title>
     <link href="http://avicii.pro/posts/46131.html"/>
     <id>http://avicii.pro/posts/46131.html</id>
     <published>2020-02-21T12:43:21.149Z</published>
-    <updated>2020-03-24T05:49:36.001Z</updated>
+    <updated>2020-03-24T13:06:26.706Z</updated>
     
     <summary type="html">
     
@@ -84,29 +36,14 @@
     </summary>
     
     
+      <category term="Hexo" scheme="http://avicii.pro/categories/Hexo/"/>
     
-  </entry>
-  
-  <entry>
-    <title>hello-world</title>
-    <link href="http://avicii.pro/posts/9408.html"/>
-    <id>http://avicii.pro/posts/9408.html</id>
-    <published>2020-02-21T05:30:42.928Z</published>
-    <updated>2020-03-23T13:12:45.060Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;想学习的第一天&quot;&gt;&lt;a href=&quot;#想学习的第一天&quot; class=&quot;headerlink&quot; title=&quot;想学习的第一天&quot;&gt;&lt;/a&gt;想学习的第一天&lt;/h1&gt;&lt;h2 id=&quot;想学习的第二天&quot;&gt;&lt;a href=&quot;#想学习的第二天&quot;
-        
-      
-    
-    </summary>
+      <category term="Github" scheme="http://avicii.pro/categories/Hexo/Github/"/>
     
     
+      <category term="Hexo" scheme="http://avicii.pro/tags/Hexo/"/>
+    
+      <category term="博客搭建" scheme="http://avicii.pro/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
