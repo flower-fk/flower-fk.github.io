@@ -26,11 +26,281 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     
-<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Avicii" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
 
 
-<body>
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },1000); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+ </script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Avicii" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><style type="text/css" lang="css">
+    #loading-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        width: 100vw;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #FFF;
+        text-align: center;
+        /* loader页面消失采用渐隐的方式*/
+        -webkit-transition: opacity 1s ease;
+        -moz-transition: opacity 1s ease;
+        -o-transition: opacity 1s ease;
+        transition: opacity 1s ease;
+    }
+    .loading-image{
+        width: 120px;
+        height: 50px;
+        transform: translate(-50%);
+    }
+
+    .loading-image div:nth-child(2) {
+        -webkit-animation: pacman-balls 1s linear 0s infinite;
+        animation: pacman-balls 1s linear 0s infinite
+    }
+
+    .loading-image div:nth-child(3) {
+        -webkit-animation: pacman-balls 1s linear .33s infinite;
+        animation: pacman-balls 1s linear .33s infinite
+    }
+
+    .loading-image div:nth-child(4) {
+        -webkit-animation: pacman-balls 1s linear .66s infinite;
+        animation: pacman-balls 1s linear .66s infinite
+    }
+
+    .loading-image div:nth-child(5) {
+        -webkit-animation: pacman-balls 1s linear .99s infinite;
+        animation: pacman-balls 1s linear .99s infinite
+    }
+
+   .loading-image div:first-of-type {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+        animation: rotate_pacman_half_up .5s 0s infinite;
+    }
+    .loading-image div:nth-child(2) {
+        width: 0;
+        height: 0;
+        border: 25px solid #49b1f5;
+        border-right-color: transparent;
+        border-radius: 25px;
+        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+        animation: rotate_pacman_half_down .5s 0s infinite;
+        margin-top: -50px;
+    }
+    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
+
+    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
+
+    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
+
+
+    .loading-image div:nth-child(3),
+    .loading-image div:nth-child(4),
+    .loading-image div:nth-child(5),
+    .loading-image div:nth-child(6){
+        background-color: #49b1f5;
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        margin: 2px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        transform: translateY(-6.25px);
+        top: 25px;
+        left: 100px;
+    }
+    .loading-text{
+        margin-bottom: 20vh;
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2rem;
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 500px) {
+         .loading-text{
+            font-size: 1.5rem;
+         }
+    }
+    .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    /* logo出现动画 */
+    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
+    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
+ </style>
+ <script>
+(function () {
+    const loaded = function(){
+       setTimeout(function(){
+            const loader = document.getElementById("loading-container");
+            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+            // document.getElementById("body-wrap").style.display="flex";
+            setTimeout(function(){
+                loader.style.display="none";
+            },1000); 
+        },1000);//强制显示loading page 1s  
+    };
+    loaded();
+})()
+ </script></head>
+
+
+
+ <div id="loading-container">
+     <p class="loading-text">玩命加载中 . . . </p> 
+     <div class="loading-image">
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div> 
+         <div></div>
+     </div>
+ </div><body>
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -545,18 +815,18 @@ $ node -v
 $ <span class="token function">npm</span> -v</code></pre>
 <p>测试结果如图：</p>
 <hr>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/5oV8NziwGov9.png?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/5oV8NziwGov9.png?imageslim" alt="mark"></p>
 <p>到这里，我们第一步成功完成。</p>
 <h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title=" . 安装hexo"></a><font color="red"> . 安装hexo</font></h3><p>选择一个磁盘，新建一个文件夹，自己重命名文件夹（如：我的文件夹为：Ｅ\TRHX_Blog），博客相关文件将存储在此文件夹下，在该文件夹下右键鼠标，点击 Git Bash Here，输入以下 npm 命令即可安装，第一个命令表示安装 hexo，第二个命令表示安装 hexo 部署到 git page 的 deployer，如图所示即为安装成功。</p>
 <pre class=" language-BASH"><code class="language-BASH">$ npm install hexo-cli -g  
 
 $ npm install hexo-deployer-git --save  </code></pre>
-<p> <img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Wg9tDmmnrgCI.jpg?imageslim" alt="mark"></p>
+<p> <img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Wg9tDmmnrgCI.jpg?imageslim" alt="mark"></p>
 <h3 id="Hexo-初始化配置"><a href="#Hexo-初始化配置" class="headerlink" title=" . Hexo 初始化配置"></a><font color="red"> . Hexo 初始化配置</font></h3><p>在刚才新建的文件夹里面再次新建一个 Hexo 文件夹（如：我的文件夹为：E\TRHX_Blog\Hexo）,进入该 Hexo 文件夹右键鼠标，点击 Git Bash Here，输入以下命令，（过程可能会有点长，请耐心等待）如图所示则安装成功 。</p>
 <pre class=" language-bash"><code class="language-bash">$ hexo init</code></pre>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/uuKbDWJA9Wjy.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/uuKbDWJA9Wjy.jpg?imageslim" alt="mark"></p>
 <p>Hexo 安装完成后，将会在指定文件夹中新建所需要的文件，此时Hexo 文件夹下的目录如下：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/xcsv0ECYXv4s.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/xcsv0ECYXv4s.jpg?imageslim" alt="mark"></p>
 <p>有的人可能会没有public文件夹，这个不要紧。</p>
 <h3 id="本地查看效果"><a href="#本地查看效果" class="headerlink" title=" . 本地查看效果"></a><font color="red"> . 本地查看效果</font></h3><p>执行以下命令，执行完即可登录 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 查看效果</p>
 <pre class=" language-bash"><code class="language-bash">$ hexo g 
@@ -565,11 +835,11 @@ $ hexo s</code></pre>
 <p>显示以下信息说明操作成功：</p>
 <p> -打开浏览器复制进入查看效果</p>
 <pre class=" language-bash"><code class="language-bash"> INFO Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</code></pre>
-<p><img src="5.jpg" alt=""></p>
+<p><img src="/loading.gif" data-original="5.jpg" alt=""></p>
 <p>做到这里，恭喜你，成功一半了:v:</p>
 <h2 id="下面的具体任务是将本地博客部署到github上y"><a href="#下面的具体任务是将本地博客部署到github上y" class="headerlink" title=" . 下面的具体任务是将本地博客部署到github上y"></a><font color="red"> . 下面的具体任务是将本地博客部署到github上y</font></h2><h4 id="1-注册github账号"><a href="#1-注册github账号" class="headerlink" title=" 1.注册github账号"></a><font color="red"> 1.注册github账号</font></h4><p><a href="https://github.com/" target="_blank" rel="noopener">点击此处</a>访问 Github 官网，点击 Sign Up 注册账户</p>
 <h4 id="2-创建项目代码库"><a href="#2-创建项目代码库" class="headerlink" title=" 2.创建项目代码库"></a><font color="red"> 2.创建项目代码库</font></h4><p>点击 New repository 开始创建，步骤及注意事项见下图：（库名一定要和用户名一样，否则容易出错）</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/EYDICoxiwewa.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/EYDICoxiwewa.jpg?imageslim" alt="mark"></p>
 <p>​      </p>
 <h4 id="3-配置SSH密钥"><a href="#3-配置SSH密钥" class="headerlink" title=" 3. 配置SSH密钥"></a><font color="red"> 3. 配置SSH密钥</font></h4><p>只有配置好 SSH 密钥后，我们才可以通过 git 操作实现本地代码库与 Github 代码库同步，在你第一次新建的文件夹里面（如：我的文件夹为：Ｅ\TRHX_Blog） Git Bash Here 输入以下命令：</p>
 <pre class=" language-bash"><code class="language-bash"> $ ssh-keygen -t rsa -C <span class="token string">"your email@example.com"</span>  
@@ -589,38 +859,38 @@ $ hexo s</code></pre>
 <pre class=" language-bash"><code class="language-bash"> $ clip <span class="token operator">&lt;</span> ~/.ssh/id_rsa.pub</code></pre>
 <h4 id="4-在github中添加你的密钥"><a href="#4-在github中添加你的密钥" class="headerlink" title=" 4. 在github中添加你的密钥"></a><font color="red"> 4. 在github中添加你的密钥</font></h4><ul>
 <li><p>登陆 GitHub，进入 Settings：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/CRRp9wDhPJ8t.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/CRRp9wDhPJ8t.jpg?imageslim" alt="mark"></p>
 </li>
 <li><p>点击 SSH and GPG Keys：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/AjVyHwcoAeCo.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/AjVyHwcoAeCo.jpg?imageslim" alt="mark"></p>
 </li>
 <li><p>选择 New SSH key：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/MVeQ4CrhUGWE.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/MVeQ4CrhUGWE.jpg?imageslim" alt="mark"></p>
 </li>
 <li><p>粘贴密钥：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/NVVBoJ9rQXiM.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/NVVBoJ9rQXiM.jpg?imageslim" alt="mark"></p>
 </li>
 </ul>
 <h4 id="5-测试"><a href="#5-测试" class="headerlink" title=" 5. 测试"></a><font color="red"> 5. 测试</font></h4><p>输入以下命令：注意：<a href="mailto:git@github.com">git@github.com</a>不要做任何更改！</p>
 <pre class=" language-bash"><code class="language-bash"> $ <span class="token function">ssh</span> -T git@github.com</code></pre>
 <p>​      之后会显示：</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/tIShSRrtkLlz.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/tIShSRrtkLlz.jpg?imageslim" alt="mark"></p>
 <p>​     回车即可，出现如下图就OK了</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/3oJfzAvKjHIy.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/3oJfzAvKjHIy.jpg?imageslim" alt="mark"></p>
 <h4 id="6-配置git个人信息"><a href="#6-配置git个人信息" class="headerlink" title=" 6. 配置git个人信息"></a><font color="red"> 6. 配置git个人信息</font></h4><p>Git 会根据用户的名字和邮箱来记录提交，GitHub 也是用这些信息来做权限的处理，输入以下命令进行个人信息的设置，把名称和邮箱替换成你自己的，名字可以不是 GitHub 的昵称，但为了方便记忆，建议与 GitHub 一致</p>
 <pre class=" language-bash"><code class="language-bash"> $ <span class="token function">git</span> config --global user.name <span class="token string">"此处填你的用户名"</span>  
  $ <span class="token function">git</span> config --global user.email  <span class="token string">"此处填你的邮箱"</span></code></pre>
 <p>到此为止 SSH Key 配置成功，本机已成功连接到 Github</p>
 <h4 id="7-将本地的Hexo文件更新到Github中"><a href="#7-将本地的Hexo文件更新到Github中" class="headerlink" title=" 7. 将本地的Hexo文件更新到Github中"></a><font color="red"> 7. 将本地的Hexo文件更新到Github中</font></h4><p>登录 Github 打开自己的项目 your name.github.io</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/AtzxfgWkR28d.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/AtzxfgWkR28d.jpg?imageslim" alt="mark"></p>
 <p>鼠标移到 Clone or download 按钮，选择 Use SSH</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Ueo0qvbNpqFN.png?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Ueo0qvbNpqFN.png?imageslim" alt="mark"></p>
 <p>一键复制地址</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Nhp4rscvUNmW.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/Nhp4rscvUNmW.jpg?imageslim" alt="mark"></p>
 <p>打开你创建的 Hexo 文件夹（如：E:\TRHX_Blog\Hexo），右键用记事本（Notepad++或者VS code等编译软件 都可以）打开该文件夹下的 _config.yml 文件</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/pHIdmLUAAjD5.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/pHIdmLUAAjD5.jpg?imageslim" alt="mark"></p>
 <p>按下图修改 _config.yml 文件并保存</p>
-<p><img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/q158ipYQye6a.jpg?imageslim" alt="mark"></p>
+<p><img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/q158ipYQye6a.jpg?imageslim" alt="mark"></p>
 <p>在 Hexo 文件夹下分别执行以下命令：</p>
 <pre class=" language-bash"><code class="language-bash"> $ hexo g  
  $ hexo d</code></pre>
@@ -630,7 +900,7 @@ $ hexo s</code></pre>
 <pre class=" language-bash"><code class="language-bash"> <span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save</code></pre>
 <p>再执行hexo g 和hexo d两条命令，你的博客就会部署到 Github 上了。</p>
 <p>你的博客地址：https://你的用户名.github.io，比如我的是：<a href="https://ccit18081430115avicii.github.io" target="_blank" rel="noopener">https://ccit18081430115avicii.github.io</a> ,现在每个人都可以通过此链接访问你的博客了。<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span></p>
-<h3 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h3><p>其实这玩意，没啥难的，网上遍地的教程，选择一个最适合自己的跟着做就行了。我一开始搭的时候，就卡在部署到github上，弄了有几个小时。。。后来上网各种百度，最后发现是在公钥那里出了问题，所以啊，做的时候一定不能着急，得一步步跟着教程做，要有耐心。贴上一张寒假的我：<img src="http://q6n9wkpci.bkt.clouddn.com/www/20200304/SAF9uah3ROhe.jpg?imageslim" alt="mark" style="zoom: 25%;"></p>
+<h3 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h3><p>其实这玩意，没啥难的，网上遍地的教程，选择一个最适合自己的跟着做就行了。我一开始搭的时候，就卡在部署到github上，弄了有几个小时。。。后来上网各种百度，最后发现是在公钥那里出了问题，所以啊，做的时候一定不能着急，得一步步跟着教程做，要有耐心。贴上一张寒假的我：<img src="/loading.gif" data-original="http://q6n9wkpci.bkt.clouddn.com/www/20200304/SAF9uah3ROhe.jpg?imageslim" alt="mark" style="zoom: 25%;"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1313,6 +1583,6 @@ if (windowWidth > 768) {
 }
 </script>
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script><script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
 
 </html>

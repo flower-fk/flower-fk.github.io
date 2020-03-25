@@ -56,3 +56,19 @@
         transform: translate(0, 0.5px) rotate(1.5deg);
     }
 }
+@font-face{
+    font-family: 'msyh';
+    src: url('../font/msyh.ttc');
+}
+
+body{
+    font-family: 'msyh';
+}
+
+@font-face{
+ font-family: 'CHILLER';
+ src: url('../localfont/CHILLER.ttf');
+}
+.diyFont{
+ font-family: 'CHILLER';
+}
