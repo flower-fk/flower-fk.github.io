@@ -5,9 +5,9 @@
   <subtitle>精诚所至，金石为开</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://avicii.pro/"/>
+  <link href="ccit18081430115avicii.github.io/"/>
   <updated>2020-03-24T13:06:26.706Z</updated>
-  <id>http://avicii.pro/</id>
+  <id>ccit18081430115avicii.github.io/</id>
   
   <author>
     <name>Avicii-EDM</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>详解Hexo搭建博客及部署到Github</title>
-    <link href="http://avicii.pro/posts/46131.html"/>
-    <id>http://avicii.pro/posts/46131.html</id>
+    <link href="ccit18081430115avicii.github.io/posts/46131.html"/>
+    <id>ccit18081430115avicii.github.io/posts/46131.html</id>
     <published>2020-02-21T12:43:21.149Z</published>
     <updated>2020-03-24T13:06:26.706Z</updated>
     
@@ -36,14 +36,14 @@
     </summary>
     
     
-      <category term="Hexo" scheme="http://avicii.pro/categories/Hexo/"/>
+      <category term="Hexo" scheme="ccit18081430115avicii.github.io/categories/Hexo/"/>
     
-      <category term="Github" scheme="http://avicii.pro/categories/Hexo/Github/"/>
+      <category term="Github" scheme="ccit18081430115avicii.github.io/categories/Hexo/Github/"/>
     
     
-      <category term="Hexo" scheme="http://avicii.pro/tags/Hexo/"/>
+      <category term="Hexo" scheme="ccit18081430115avicii.github.io/tags/Hexo/"/>
     
-      <category term="博客搭建" scheme="http://avicii.pro/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+      <category term="博客搭建" scheme="ccit18081430115avicii.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
   </entry>
   
