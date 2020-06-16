@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>啤酒屋</title>
+  
+  <subtitle>精诚所至，金石为开</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="www.happy-air.fun/"/>
+  <updated>2020-06-16T13:54:47.867Z</updated>
+  <id>www.happy-air.fun/</id>
+  
+  <author>
+    <name>Avicii</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网页如何显示连接蓝牙设备</title>
+    <link href="www.happy-air.fun/posts/13477.html"/>
+    <id>www.happy-air.fun/posts/13477.html</id>
+    <published>2020-06-16T14:09:23.802Z</published>
+    <updated>2020-06-16T13:54:47.867Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;首先，让我们先了解下今天要学习的东西。&quot;&gt;&lt;a href=&quot;#首先，让我们先了解下今天要学习的东西。&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
