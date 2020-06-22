@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.happy-air.fun/"/>
-  <updated>2020-06-21T04:56:00.457Z</updated>
+  <updated>2020-06-22T14:10:57.891Z</updated>
   <id>www.happy-air.fun/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>启用通知</title>
+    <link href="www.happy-air.fun/posts/41131.html"/>
+    <id>www.happy-air.fun/posts/41131.html</id>
+    <published>2020-06-22T14:08:54.129Z</published>
+    <updated>2020-06-22T14:10:57.891Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;本章任务&quot;&gt;&lt;a href=&quot;#本章任务&quot; class=&quot;headerlink&quot; title=&quot;本章任务&quot;&gt;&lt;/a&gt;本章任务&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;在网页上显示加速度计的三轴值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>读写特性</title>
     <link href="www.happy-air.fun/posts/52094.html"/>
     <id>www.happy-air.fun/posts/52094.html</id>
     <published>2020-06-21T04:52:02.426Z</published>
-    <updated>2020-06-21T04:56:00.457Z</updated>
+    <updated>2020-06-21T04:57:39.618Z</updated>
     
     <summary type="html">
     
