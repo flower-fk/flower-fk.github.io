@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.happy-air.fun/"/>
-  <updated>2020-06-22T14:10:57.891Z</updated>
+  <updated>2020-06-25T07:22:56.136Z</updated>
   <id>www.happy-air.fun/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>启用通知</title>
-    <link href="www.happy-air.fun/posts/41131.html"/>
-    <id>www.happy-air.fun/posts/41131.html</id>
-    <published>2020-06-22T14:08:54.129Z</published>
-    <updated>2020-06-22T14:10:57.891Z</updated>
+    <title>网页控制行列</title>
+    <link href="www.happy-air.fun/posts/13775.html"/>
+    <id>www.happy-air.fun/posts/13775.html</id>
+    <published>2020-06-25T07:22:23.407Z</published>
+    <updated>2020-06-25T07:22:56.136Z</updated>
     
     <summary type="html">
     
@@ -29,10 +29,53 @@
       
         
         
-          &lt;h2 id=&quot;本章任务&quot;&gt;&lt;a href=&quot;#本章任务&quot; class=&quot;headerlink&quot; title=&quot;本章任务&quot;&gt;&lt;/a&gt;本章任务&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;在网页上显示加速度计的三轴值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot;
+          &lt;h3 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h3&gt;&lt;pre class=&quot; language-javascript&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>控制任意一盏灯</title>
+    <link href="www.happy-air.fun/posts/57220.html"/>
+    <id>www.happy-air.fun/posts/57220.html</id>
+    <published>2020-06-25T07:22:23.404Z</published>
+    <updated>2020-06-25T07:24:06.077Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;相关代码修改如下：&quot;&gt;&lt;a href=&quot;#相关代码修改如下：&quot; class=&quot;headerlink&quot; title=&quot;相关代码修改如下：&quot;&gt;&lt;/a&gt;相关代码修改如下：&lt;/h3&gt;&lt;pre class=&quot; language-html&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>启用通知</title>
+    <link href="www.happy-air.fun/posts/41131.html"/>
+    <id>www.happy-air.fun/posts/41131.html</id>
+    <published>2020-06-22T14:08:54.129Z</published>
+    <updated>2020-06-22T14:19:00.506Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h4&gt;&lt;pre class=&quot; language-javascript&quot;&gt;&lt;code
         
       
     

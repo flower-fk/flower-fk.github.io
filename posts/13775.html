@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="启用通知, 啤酒屋">
+    <meta name="keywords" content="网页控制行列, 啤酒屋">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>启用通知 | 啤酒屋</title>
+    <title>网页控制行列 | 啤酒屋</title>
     <link rel="icon" type="image/png" href="/medias/log.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -631,12 +631,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200523225337.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200523224911.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">启用通知</h1>
+                    <h1 class="description center-align post-title">网页控制行列</h1>
                 </div>
             </div>
         </div>
@@ -765,7 +765,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-22
+                    2020-06-25
                 </div>
                 
 
@@ -797,190 +797,176 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h4><pre class=" language-javascript"><code class="language-javascript">   <span class="token operator">&lt;</span>html<span class="token operator">></span>
-   <span class="token operator">&lt;</span>head<span class="token operator">></span>
-   <span class="token operator">&lt;</span>script<span class="token operator">></span>
-        <span class="token keyword">var</span>    selected_device<span class="token punctuation">;</span>    
-        <span class="token keyword">var</span>    connected_server<span class="token punctuation">;</span>    
-        <span class="token keyword">var</span>    connected <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>    
-        <span class="token keyword">var</span>    services_discovered <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//在第5课上添加</span>
-        <span class="token keyword">var</span>    notifications_enabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> 
-        <span class="token comment" spellcheck="true">//在第5课上添加以下内容</span>
-    <span class="token keyword">var</span> has_accelerometer_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> 
-    <span class="token keyword">var</span> has_accelerometer_data <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token keyword">var</span> has_led_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token keyword">var</span> has_led_matrix_state <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token keyword">var</span> has_device_information_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> 
-    <span class="token keyword">var</span> has_model_name_string <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> 
-
-   <span class="token comment" spellcheck="true">// service UUIDs </span>
-   ACCELEROMETER_SERVICE <span class="token operator">=</span> <span class="token string">'e95d0753-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
-   LED_SERVICE <span class="token operator">=</span> <span class="token string">'e95dd91d-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
-   DEVICE_INFORMATION_SERVICE <span class="token operator">=</span> <span class="token string">'0000180a-0000-1000-8000-00805f9b34fb'</span><span class="token punctuation">;</span>
-   <span class="token comment" spellcheck="true">// characteristic UUIDs </span>
-   ACCELEROMETER_DATA <span class="token operator">=</span> <span class="token string">'e95dca4b-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
-   LED_MATRIX_STATE  <span class="token operator">=</span> <span class="token string">'e95d7b77-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
-   MODEL_NUMBER_STRING <span class="token operator">=</span> <span class="token string">'00002a24-0000-1000-8000-00805f9b34fb'</span><span class="token punctuation">;</span> 
-
-   <span class="token comment" spellcheck="true">// cached characteristics </span>
-    <span class="token keyword">var</span> led_matrix_state<span class="token punctuation">;</span> 
-    <span class="token keyword">var</span> model_number_string<span class="token punctuation">;</span>
-    <span class="token keyword">var</span> accelerometer_data<span class="token punctuation">;</span> 
-
-     <span class="token comment" spellcheck="true">//</span>
-     <span class="token keyword">var</span> service_count<span class="token punctuation">;</span>
-     <span class="token keyword">var</span> services_discovered<span class="token punctuation">;</span>
-     <span class="token keyword">var</span> characteristics_discovered<span class="token punctuation">;</span>  
-     <span class="token keyword">var</span> characteristic_count <span class="token punctuation">;</span> 
-    <span class="token keyword">function</span> <span class="token function">discoverOrdisconnectDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
-    <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"discoverDevicesOrDisconnect"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span>
-            <span class="token function">discoverDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
+                <h3 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>html<span class="token operator">></span>
+    <span class="token operator">&lt;</span>head<span class="token operator">></span>
+        <span class="token operator">&lt;</span>script<span class="token operator">></span>
+        <span class="token keyword">var</span>    selected_device<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//选择设备</span>
+        <span class="token keyword">var</span>    connected_server<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//连接设备</span>
+        <span class="token keyword">var</span>    connected<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//连接状态</span>
+        <span class="token keyword">var</span>    services_discovered<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//发现设备状态</span>
+        <span class="token comment" spellcheck="true">// 添加服务和特性状态变量 </span>
+        <span class="token keyword">var</span> has_accelerometer_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//加速度服务状态</span>
+        <span class="token keyword">var</span> has_accelerometer_data <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//加速度特性状态</span>
+        <span class="token keyword">var</span> has_led_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//led服务状态</span>
+        <span class="token keyword">var</span> has_led_matrix_state <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//led控制特性状态</span>
+        <span class="token keyword">var</span> has_device_information_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//设备信息服务状态</span>
+        <span class="token keyword">var</span> has_model_name_string <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//设备信息特性状态</span>
+        <span class="token keyword">var</span> has_temperature_service <span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//温度服务状态</span>
+        <span class="token keyword">var</span> has_tem_temperature <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//温度特性状态</span>
+         <span class="token comment" spellcheck="true">// 服务 UUIDs </span>
+       ACCELEROMETER_SERVICE <span class="token operator">=</span> <span class="token string">'e95d0753-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
+       LED_SERVICE <span class="token operator">=</span> <span class="token string">'e95dd91d-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
+       DEVICE_INFORMATION_SERVICE <span class="token operator">=</span> <span class="token string">'0000180a-0000-1000-8000-00805f9b34fb'</span><span class="token punctuation">;</span>
+       TEMPERATURE_SERVICE <span class="token operator">=</span> <span class="token string">'e95d6100-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
+       <span class="token comment" spellcheck="true">// 特性 UUIDs </span>
+       ACCELEROMETER_DATA <span class="token operator">=</span> <span class="token string">'e95dca4b-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
+       LED_MATRIX_STATE  <span class="token operator">=</span> <span class="token string">'e95d7b77-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span> 
+       MODEL_NUMBER_STRING <span class="token operator">=</span> <span class="token string">'00002a24-0000-1000-8000-00805f9b34fb'</span><span class="token punctuation">;</span>
+       TEM_TEMPERATURE <span class="token operator">=</span> <span class="token string">'e95d1b25-251d-470a-a062-fa1922dfa9a8'</span><span class="token punctuation">;</span>  
+       <span class="token comment" spellcheck="true">// 添加特性变量 </span>
+       <span class="token keyword">var</span> led_matrix_state<span class="token punctuation">;</span> 
+        <span class="token keyword">var</span> model_number_string<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> accelerometer_data<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> tem_temperature<span class="token punctuation">;</span>    
+          <span class="token comment" spellcheck="true">//添加服务，特性相关参数</span>
+        <span class="token keyword">var</span> service_count<span class="token punctuation">;</span>
+         <span class="token keyword">var</span> services_discovered<span class="token punctuation">;</span>
+         <span class="token keyword">var</span> characteristics_discovered<span class="token punctuation">;</span>  
+         <span class="token keyword">var</span> characteristic_count <span class="token punctuation">;</span>               
+         <span class="token keyword">function</span> <span class="token function">discoverOrdisconnectDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 断开连接</span>
         <span class="token punctuation">{</span>
-            selected_device<span class="token punctuation">.</span>gatt<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"discoverOrdisconnectDevices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span>
+            <span class="token function">discoverDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+            <span class="token punctuation">{</span>
+                selected_device<span class="token punctuation">.</span>gatt<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-
-   <span class="token keyword">function</span> <span class="token function">setNotificationsStatus</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-    notifications_enabled <span class="token operator">=</span> status<span class="token punctuation">;</span> 
-    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'status_notifications'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> status<span class="token punctuation">;</span> 
-<span class="token punctuation">}</span> </code></pre>
-<p>​    </p>
-<pre class=" language-javascript"><code class="language-javascript">    <span class="token keyword">function</span> <span class="token function">onDisconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           
-    <span class="token punctuation">{</span>  
-         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"onDisconnected"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-         <span class="token function">resetUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
- <span class="token keyword">function</span> <span class="token function">onAccelerometerData</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"onAccelerometerData"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-     buffer <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">.</span>buffer<span class="token punctuation">;</span> 
-     dataview <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-     X <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-     Y <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-     Z <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"X="</span> <span class="token operator">+</span> X <span class="token operator">+</span> <span class="token string">", Y="</span> <span class="token operator">+</span> Y <span class="token operator">+</span> <span class="token string">", Z+"</span> <span class="token operator">+</span> Z<span class="token punctuation">)</span><span class="token punctuation">;</span>  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"accelerometer_data"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"X="</span> <span class="token operator">+</span> X <span class="token operator">+</span> <span class="token string">", Y="</span> <span class="token operator">+</span> Y <span class="token operator">+</span> <span class="token string">", Z="</span> <span class="token operator">+</span> Z<span class="token punctuation">;</span> <span class="token punctuation">}</span>
-    <span class="token keyword">function</span> <span class="token function">discoverDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript">    <span class="token keyword">function</span> <span class="token function">onDisconnected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//连接</span>
     <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"discoverDevices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"onDisconnected"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">resetUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//function input.temperature(): number;</span>
+    <span class="token keyword">function</span> <span class="token function">discoverDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">// 搜索设备函数</span>
+    <span class="token punctuation">{</span> 
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"discoverDevices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>acceptAllDevices<span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
-            optionalServices<span class="token punctuation">:</span> <span class="token punctuation">[</span>DEVICE_INFORMATION_SERVICE<span class="token punctuation">,</span> ACCELEROMETER_SERVICE<span class="token punctuation">,</span> LED_SERVICE<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">//在第5节课上添加</span>
-        <span class="token punctuation">}</span>       
-        navigator<span class="token punctuation">.</span>bluetooth<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>   
+            optionalServices<span class="token punctuation">:</span> <span class="token punctuation">[</span>DEVICE_INFORMATION_SERVICE<span class="token punctuation">,</span> ACCELEROMETER_SERVICE<span class="token punctuation">,</span> LED_SERVICE<span class="token punctuation">,</span>TEMPERATURE_SERVICE<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">//在第5节课上添加</span>
+        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">//发现所有周边蓝牙设备</span>
+
+        navigator<span class="token punctuation">.</span>bluetooth<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>device <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'> Name:'</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'> Id:'</span>   <span class="token operator">+</span> device<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'> Id:'</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'> Connected:'</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>gatt<span class="token punctuation">.</span>connected<span class="token punctuation">)</span><span class="token punctuation">;</span>
             selected_device <span class="token operator">=</span> device<span class="token punctuation">;</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>selected_device<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                              
-        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'ERROR:'</span> <span class="token operator">+</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ERROR:'</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">function</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                             
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'ERROR'</span> <span class="token operator">+</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ERROR'</span> <span class="token operator">+</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+    <span class="token punctuation">}</span>       
+    <span class="token keyword">function</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//连接函数</span>
     <span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"connecting"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         selected_device<span class="token punctuation">.</span>gatt<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
-            <span class="token keyword">function</span> <span class="token punctuation">(</span>server<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">//表示连接成功</span>
+            <span class="token keyword">function</span> <span class="token punctuation">(</span>server<span class="token punctuation">)</span>
             <span class="token punctuation">{</span>
                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Connected to"</span> <span class="token operator">+</span> server<span class="token punctuation">.</span>device<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Connected="</span> <span class="token operator">+</span> server<span class="token punctuation">.</span>connected<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                selected_device<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span> <span class="token string">'gattserverdisconnected'</span><span class="token punctuation">,</span>onDisconnected<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 在第4课基础上添加的函数</span>
-
-                connected_server <span class="token operator">=</span> server<span class="token punctuation">;</span>
-                <span class="token function">discoverSvcsAndChars</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">////在第5课基础上添加的函数</span>
-                <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// 在第3课基础上添加的函数,设置电脑蓝牙的当前连接状态</span>
-
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Connected "</span> <span class="token operator">+</span> server<span class="token punctuation">.</span>connected<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                selected_device<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'gattserverdisconnected'</span><span class="token punctuation">,</span>onDisconnected<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                connected_server <span class="token operator">=</span>server<span class="token punctuation">;</span>
+                <span class="token function">discoverSvcsAndChars</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//在第5课基础上添加的函数</span>
+                <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span><span class="token punctuation">,</span>
-            <span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">//表示连接失败</span>
+            <span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span>
             <span class="token punctuation">{</span>
                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"ERROR:could not connct-"</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"ERROR:could not connct-"</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 在第3课基础上添加的函数,设置电脑蓝牙的当前连接状态</span>
-
+               <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"ERROR:could not connct-"</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword">function</span> <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 在第3课基础上添加的函数,设置电脑蓝牙的当前连接状态</span>
+    <span class="token keyword">function</span> <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//设置连接状态</span>
     <span class="token punctuation">{</span>
-        connected <span class="token operator">=</span> status<span class="token punctuation">;</span>
+        connected<span class="token operator">=</span>status<span class="token punctuation">;</span>
         document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'status_connected'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> status<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>   
-            document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn_scan'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Disconnect"</span><span class="token punctuation">;</span> 
-        <span class="token punctuation">}</span> 
-        <span class="token keyword">else</span> 
-        <span class="token punctuation">{</span>   
-            document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn_scan'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Discover Devices"</span><span class="token punctuation">;</span>  
+        <span class="token keyword">if</span><span class="token punctuation">(</span>status<span class="token operator">==</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn_scan'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Disconnect"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn_scan'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Discover Devices"</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword">function</span> <span class="token function">setDiscoveryStatus</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span>
-     <span class="token punctuation">{</span>  
-         services_discovered <span class="token operator">=</span> status<span class="token punctuation">;</span> 
-         document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'status_discovered'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> status<span class="token punctuation">;</span>
-     <span class="token punctuation">}</span>
-
-    <span class="token keyword">function</span> <span class="token function">resetUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">// 在第4课基础上添加的函数</span>
+    <span class="token keyword">function</span> <span class="token function">setDiscoveryStatus</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//设置发现状态</span>
     <span class="token punctuation">{</span>
-        <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">setDiscoveryStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 在第5课基础上添加的函数</span>
-        <span class="token function">setNotificationsStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        services_discovered<span class="token operator">=</span>status<span class="token punctuation">;</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'status_discovered'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>status<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">function</span> <span class="token function">discoverSvcsAndChars</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//在第5课基础上添加的函数</span>
+    <span class="token keyword">function</span> <span class="token function">resetUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//重置页面</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">setConnectedStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">function</span> <span class="token function">discoverSvcsAndChars</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//发现服务和特性</span>
     <span class="token punctuation">{</span>  
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"discoverSvcsAndChars server="</span> <span class="token operator">+</span> connected_server<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        connected_server<span class="token punctuation">.</span><span class="token function">getPrimaryServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//调用函数去获取BBC上的相应的服务</span>
-        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>services <span class="token operator">=</span><span class="token operator">></span> <span class="token comment" spellcheck="true">//对服务进行判断</span>
+        connected_server<span class="token punctuation">.</span><span class="token function">getPrimaryServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>services <span class="token operator">=</span><span class="token operator">></span> 
         <span class="token punctuation">{</span>    
                 has_accelerometer_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>    
                 has_led_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>    
                 has_device_information_service <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> 
+                has_temperature_service<span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 
                 services_discovered <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    
-                service_count <span class="token operator">=</span> services<span class="token punctuation">.</span>length<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//发现BBC板服务的个数</span>
+                service_count <span class="token operator">=</span> services<span class="token punctuation">.</span>length<span class="token punctuation">;</span>    
                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Got "</span> <span class="token operator">+</span> service_count <span class="token operator">+</span> <span class="token string">" services"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-                services<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>service <span class="token operator">=</span><span class="token operator">></span>  <span class="token comment" spellcheck="true">//对已发现的所有服务进行判断</span>
+                services<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>service <span class="token operator">=</span><span class="token operator">></span> 
                 <span class="token punctuation">{</span>     
                     <span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token punctuation">.</span>uuid <span class="token operator">==</span> ACCELEROMETER_SERVICE<span class="token punctuation">)</span>
                     <span class="token punctuation">{</span>      
                         has_accelerometer_service <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>    
-                    <span class="token punctuation">}</span>     
+                    <span class="token punctuation">}</span>   
                     <span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token punctuation">.</span>uuid <span class="token operator">==</span> LED_SERVICE<span class="token punctuation">)</span> 
                     <span class="token punctuation">{</span>      
                         has_led_service <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>     
                     <span class="token punctuation">}</span>     
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token punctuation">.</span>uuid <span class="token operator">==</span> DEVICE_INFORMATION_SERVICE<span class="token punctuation">)</span> 
+                   <span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token punctuation">.</span>uuid <span class="token operator">==</span> DEVICE_INFORMATION_SERVICE<span class="token punctuation">)</span> 
                     <span class="token punctuation">{</span>      
                         has_device_information_service <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>     
-                    <span class="token punctuation">}</span>     
+                    <span class="token punctuation">}</span> 
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token punctuation">.</span>uuid <span class="token operator">==</span> TEMPERATURE_SERVICE<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//温度</span>
+                    <span class="token punctuation">{</span>      
+                        has_temperature_service <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>     
+                    <span class="token punctuation">}</span>        
                     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Getting Characteristics for service '</span> <span class="token operator">+</span> service<span class="token punctuation">.</span>uuid<span class="token punctuation">)</span><span class="token punctuation">;</span>     
-                    service<span class="token punctuation">.</span><span class="token function">getCharacteristics</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//获取相应服务的所有特性</span>
+                    service<span class="token punctuation">.</span><span class="token function">getCharacteristics</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                     <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>characteristics <span class="token operator">=</span><span class="token operator">></span> 
                     <span class="token punctuation">{</span>      
                         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'> Service: '</span> <span class="token operator">+</span> service<span class="token punctuation">.</span>uuid<span class="token punctuation">)</span><span class="token punctuation">;</span>      
-                        services_discovered<span class="token operator">++</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//发现一个就加一</span>
+                        services_discovered<span class="token operator">++</span><span class="token punctuation">;</span>     
                         characteristics_discovered <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>      
-                        characteristic_count <span class="token operator">=</span> characteristics<span class="token punctuation">.</span>length<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//特性的个数</span>
-                        characteristics<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>characteristic <span class="token operator">=</span><span class="token operator">></span> <span class="token comment" spellcheck="true">//对已发现的特性进行判断</span>
+                        characteristic_count <span class="token operator">=</span> characteristics<span class="token punctuation">.</span>length<span class="token punctuation">;</span>      
+                        characteristics<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>characteristic <span class="token operator">=</span><span class="token operator">></span> 
                         <span class="token punctuation">{</span>       
                             characteristics_discovered<span class="token operator">++</span><span class="token punctuation">;</span>       
                             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'>> Characteristic: '</span> <span class="token operator">+</span> characteristic<span class="token punctuation">.</span>uuid<span class="token punctuation">)</span><span class="token punctuation">;</span>       
                             <span class="token keyword">if</span> <span class="token punctuation">(</span>characteristic<span class="token punctuation">.</span>uuid <span class="token operator">==</span> ACCELEROMETER_DATA<span class="token punctuation">)</span>
                             <span class="token punctuation">{</span>        
-                                accelerometer_data <span class="token operator">=</span> characteristic<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//把发现的相应特性保存到相应变量中</span>
+                                accelerometer_data <span class="token operator">=</span> characteristic<span class="token punctuation">;</span>        
                                 has_accelerometer_data <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>       
-                            <span class="token punctuation">}</span>       
+                            <span class="token punctuation">}</span>      
                             <span class="token keyword">if</span> <span class="token punctuation">(</span>characteristic<span class="token punctuation">.</span>uuid <span class="token operator">==</span> LED_MATRIX_STATE<span class="token punctuation">)</span> 
                             <span class="token punctuation">{</span>        
                                 led_matrix_state <span class="token operator">=</span> characteristic<span class="token punctuation">;</span>        
@@ -990,175 +976,211 @@
                             <span class="token punctuation">{</span>        
                                 model_number_string <span class="token operator">=</span> characteristic<span class="token punctuation">;</span>        
                                 has_model_name_string <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>       
-                            <span class="token punctuation">}</span>       
+                            <span class="token punctuation">}</span>
+                            <span class="token keyword">if</span><span class="token punctuation">(</span>characteristic<span class="token punctuation">.</span>uuid <span class="token operator">==</span> TEM_TEMPERATURE<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//温度</span>
+                            <span class="token punctuation">{</span>
+                                tem_temperature <span class="token operator">=</span> characteristic<span class="token punctuation">;</span> 
+                                has_tem_temperature <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>     
                             <span class="token keyword">if</span> <span class="token punctuation">(</span>services_discovered <span class="token operator">==</span> service_count <span class="token operator">&amp;&amp;</span> characteristics_discovered <span class="token operator">==</span> characteristic_count<span class="token punctuation">)</span> 
                             <span class="token punctuation">{</span>        
                                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"FINISHED DISCOVERY"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
                                 <span class="token function">setDiscoveryStatus</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
                                 <span class="token comment" spellcheck="true">//setDiscoveryStatus(true);                  </span>
-                            <span class="token punctuation">}</span>      
+                            <span class="token punctuation">}</span>    
                         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
                     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
                 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-   <span class="token keyword">function</span> <span class="token function">randomLEDs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//第六节课添加</span>
-   <span class="token punctuation">{</span>
-       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"randomLEDs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token comment" spellcheck="true">//state validation</span>
-       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span>
-           <span class="token punctuation">{</span>
-               <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>
-           <span class="token punctuation">}</span>
-       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//有没有发现所有服务</span>
-           <span class="token punctuation">{</span>
-               <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>
-           <span class="token punctuation">}</span>
-       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_led_service<span class="token punctuation">)</span>
-           <span class="token punctuation">{</span>
-               <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the LED service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>
-           <span class="token punctuation">}</span>
-       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_led_matrix_state<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//led灯的特性有没有被发现的一个标记变量</span>
-           <span class="token punctuation">{</span>
-               <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the LED matrix state characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span>
-       <span class="token keyword">var</span> led_array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-       <span class="token comment" spellcheck="true">//math.random():0~1  math.floor(x):返回小于等于x的最大整数</span>
-       led_array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       led_array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-       led_array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-       led_array<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-       led_array<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
-
-       <span class="token keyword">var</span> led_matrix_data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>led_array<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-       led_matrix_state<span class="token punctuation">.</span><span class="token function">writeValue</span><span class="token punctuation">(</span>led_matrix_data<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//控制板子上灯亮灭</span>
-       <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>_ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'LED matrix state changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-       <span class="token punctuation">}</span><span class="token punctuation">)</span>
-           <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token keyword">return</span><span class="token punctuation">;</span>
-       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-   <span class="token punctuation">}</span>
-
-<span class="token keyword">function</span> <span class="token function">readModelNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"readModelNumber"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token comment" spellcheck="true">// state validation </span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_device_information_service<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the device information service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
-        <span class="token keyword">return</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>   
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_model_name_string<span class="token punctuation">)</span> <span class="token punctuation">{</span>    
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the model name string characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token keyword">return</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>   
-
-    model_number_string<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
-        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>    
-           data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-           model_number_string <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextDecoder</span><span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>model_number_string<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-           document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"model_number"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> model_number_string<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>   
-        <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>    
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
-        <span class="token keyword">return</span><span class="token punctuation">;</span>   
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-<span class="token punctuation">}</span>
-
-<span class="token keyword">function</span> <span class="token function">toggleAccelerometerNotifications</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"toggleAccelerometerNotifications"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token keyword">return</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span> 
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        <span class="token keyword">return</span><span class="token punctuation">;</span> 
     <span class="token punctuation">}</span>  
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_accelerometer_service<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the accelerometer service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> 
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_accelerometer_data<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the accelerometer data characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token keyword">return</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span> 
+    <span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">randomLEDs</span><span class="token punctuation">(</span>ct<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//控制led</span>
+    <span class="token punctuation">{</span>  
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"randomLEDs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">// state validation   </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_led_service<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the LED service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_led_matrix_state<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>      
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the LED matrix state characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">var</span> led_array<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>ct<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+             led_array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span>    <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span>i<span class="token punctuation">;</span>
+             led_array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span>i<span class="token punctuation">;</span>   
+             led_array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span>i<span class="token punctuation">;</span>   
+             led_array<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span>i<span class="token punctuation">;</span>   
+             led_array<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">&lt;</span>i<span class="token punctuation">;</span>
+             i<span class="token operator">++</span><span class="token punctuation">;</span>
+             <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">5</span><span class="token punctuation">)</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>ct<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            led_array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            led_array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   
+            led_array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   
+            led_array<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   
+            led_array<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            led_array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">31</span><span class="token punctuation">;</span>
+            j<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>j<span class="token operator">==</span><span class="token number">5</span><span class="token punctuation">)</span>j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript">         <span class="token comment" spellcheck="true">// Math.random():0~1  Math.floor(x):返回小于等于x的最大整数</span>
+        <span class="token comment" spellcheck="true">/*led_array[0] =10;  
+        led_array[1] = 31;   
+        led_array[2] = 31;   
+        led_array[3] = 14;   
+        led_array[4] = 4;*/</span>
+        <span class="token comment" spellcheck="true">/*led_array[0] = 31;  
+        led_array[1] = 17;   
+        led_array[2] = 17;   
+        led_array[3] = 17;   
+        led_array[4] = 31; */</span>
 
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>notifications_enabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-    accelerometer_data<span class="token punctuation">.</span><span class="token function">startNotifications</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>_ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'accelerometer notifications started'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token function">setNotificationsStatus</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        accelerometer_data<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'characteristicvaluechanged'</span><span class="token punctuation">,</span> onAccelerometerData<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>  
-        <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
-        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token keyword">return</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token punctuation">}</span> 
-    <span class="token keyword">else</span>
-    <span class="token punctuation">{</span> 
-        accelerometer_data<span class="token punctuation">.</span><span class="token function">stopNotifications</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
-            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>_ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>  
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'accelerometer notificaions stopped'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-            <span class="token function">setNotificationsStatus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-            accelerometer_data<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'characteristicvaluechanged'</span><span class="token punctuation">,</span> onAccelerometerData<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        <span class="token punctuation">}</span><span class="token punctuation">)</span>   
-            <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>  
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Could not stop accelerometer_data notifications: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+        <span class="token keyword">var</span> led_matrix_data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>led_array<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        led_matrix_state<span class="token punctuation">.</span><span class="token function">writeValue</span><span class="token punctuation">(</span>led_matrix_data<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>_ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>   
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'LED matrix state changed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+        <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>   
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token keyword">return</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>  
+    <span class="token keyword">function</span> <span class="token function">readModelNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 蓝牙信息服务</span>
+    <span class="token punctuation">{</span>  
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"readModelNumber"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+        <span class="token comment" spellcheck="true">// state validation   </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>    
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_device_information_service<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the device information service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>   
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_model_name_string<span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>     
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the model name string characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+            <span class="token keyword">return</span><span class="token punctuation">;</span>   
+        <span class="token punctuation">}</span>   
+
+        model_number_string<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>   
+            data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+            model_number_string <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextDecoder</span><span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>model_number_string<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+            document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"model_number"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> model_number_string<span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+        <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>  
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+            <span class="token keyword">return</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">}</span>
+
+              <span class="token keyword">function</span> <span class="token function">accelerometer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//加速度传感器</span>
+             <span class="token punctuation">{</span>  
+                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"accelerometer"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+                 <span class="token comment" spellcheck="true">// state validation   </span>
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>connected<span class="token punctuation">)</span> 
+                 <span class="token punctuation">{</span>     
+                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Discover and connect to a device before using this function"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+                     <span class="token keyword">return</span><span class="token punctuation">;</span>   
+                 <span class="token punctuation">}</span>   
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>services_discovered<span class="token punctuation">)</span> 
+                 <span class="token punctuation">{</span>     
+                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: Service discovery has not yet completed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+                     <span class="token keyword">return</span><span class="token punctuation">;</span>  
+                 <span class="token punctuation">}</span>   
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_accelerometer_service<span class="token punctuation">)</span> 
+                 <span class="token punctuation">{</span>     
+                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the accelerometer service"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+                     <span class="token keyword">return</span><span class="token punctuation">;</span>  
+                 <span class="token punctuation">}</span>   
+                 <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>has_accelerometer_data<span class="token punctuation">)</span> 
+                 <span class="token punctuation">{</span>      
+                     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Error: The connected device does not contain the accelerometer_data characteristic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+                     <span class="token keyword">return</span><span class="token punctuation">;</span>   
+                 <span class="token punctuation">}</span>   
+
+                 accelerometer_data<span class="token punctuation">.</span><span class="token function">readValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                  buffer <span class="token operator">=</span> value<span class="token punctuation">.</span>buffer<span class="token punctuation">;</span>
+                  dataview <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  X <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  Y <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  Z <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"X="</span> <span class="token operator">+</span> X <span class="token operator">+</span> <span class="token string">", Y="</span> <span class="token operator">+</span> Y <span class="token operator">+</span> <span class="token string">", Z+"</span> <span class="token operator">+</span> Z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"ac_data"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"X="</span> <span class="token operator">+</span> X <span class="token operator">+</span> <span class="token string">", Y="</span> <span class="token operator">+</span> Y <span class="token operator">+</span> <span class="token string">",Z="</span> <span class="token operator">+</span> Z<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+                <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>error <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>  
+                    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+                    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Error: '</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+                    <span class="token keyword">return</span><span class="token punctuation">;</span>  
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<p>​                       </p>
+<pre class=" language-javascript"><code class="language-javascript">             <span class="token punctuation">}</span>  
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span>
 <span class="token operator">&lt;</span>body<span class="token operator">></span>
-    <span class="token operator">&lt;</span>h2<span class="token operator">></span> Status<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
-<span class="token operator">&lt;</span>table border<span class="token operator">=</span><span class="token string">"1"</span><span class="token operator">></span>
-  <span class="token operator">&lt;</span>tr<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>表格的第一行 <span class="token operator">--</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>b<span class="token operator">></span>Connected<span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>b<span class="token operator">></span>Service Discovery Completed<span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td<span class="token operator">></span>     <span class="token operator">&lt;</span>b<span class="token operator">></span>Notifications<span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">></span>    <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-  <span class="token operator">&lt;</span>tr<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>表格的第二行 <span class="token operator">--</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span>td id<span class="token operator">=</span><span class="token string">"status_connected"</span><span class="token operator">></span> <span class="token boolean">false</span> <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span>td id<span class="token operator">=</span><span class="token string">"status_discovered"</span><span class="token operator">></span> <span class="token boolean">false</span> <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td id<span class="token operator">=</span><span class="token string">"status_notifications"</span><span class="token operator">></span><span class="token boolean">false</span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>table<span class="token operator">></span>
-<span class="token operator">&lt;</span>h2<span class="token operator">></span> Device Discovery  Or Disconnect <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 扫描<span class="token operator">/</span>发现蓝牙设备 <span class="token operator">--</span><span class="token operator">></span> 
-<span class="token operator">&lt;</span><span class="token operator">/</span>h2 <span class="token operator">></span>
-<span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_scan"</span> onclick<span class="token operator">=</span><span class="token string">"discoverOrdisconnectDevices()"</span><span class="token operator">></span>Start scan<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-<span class="token operator">&lt;</span>hr<span class="token operator">></span>
-<span class="token operator">&lt;</span>h2<span class="token operator">></span>Reading and Writing<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
-<span class="token operator">&lt;</span>h3<span class="token operator">></span>Write Characteristic <span class="token operator">-</span> Randomise Lights<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>
-<span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_write"</span> onclick<span class="token operator">=</span><span class="token string">"randomLEDs()"</span><span class="token operator">></span>Randomise LEDs<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-<span class="token operator">&lt;</span>h3<span class="token operator">></span>Read Characteristic <span class="token operator">-</span> Model Number<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span> 
-<span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_read"</span> onclick<span class="token operator">=</span><span class="token string">"readModelNumber()"</span><span class="token operator">></span>Read Model Number<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span> 
-<span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"model_number"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span> 
-<span class="token operator">&lt;</span>hr<span class="token operator">></span>
-    <span class="token operator">&lt;</span>h2<span class="token operator">></span>Notifications <span class="token operator">-</span> Accelerometer X<span class="token punctuation">,</span> Y<span class="token punctuation">,</span> Z<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span> 
-    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_notify"</span> onclick<span class="token operator">=</span><span class="token string">"toggleAccelerometerNotifications()"</span><span class="token operator">></span>Toggle Notifications<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>  <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"accelerometer_data"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>h2<span class="token operator">></span>  Status
+    <span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+        <span class="token operator">&lt;</span>table border<span class="token operator">=</span><span class="token string">"1"</span><span class="token operator">></span>
+            <span class="token operator">&lt;</span>tr<span class="token operator">></span>
+                <span class="token operator">&lt;</span>td<span class="token operator">></span>     <span class="token operator">&lt;</span>b<span class="token operator">></span>Connected<span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">></span>   <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+                <span class="token operator">&lt;</span>td<span class="token operator">></span>     <span class="token operator">&lt;</span>b<span class="token operator">></span>Service Discovery Completed<span class="token operator">&lt;</span><span class="token operator">/</span>b<span class="token operator">></span>   <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
+            <span class="token operator">&lt;</span>tr<span class="token operator">></span>
+                <span class="token operator">&lt;</span>td id<span class="token operator">=</span><span class="token string">"status_connected"</span><span class="token operator">></span> <span class="token boolean">false</span> <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+                <span class="token operator">&lt;</span>td id<span class="token operator">=</span><span class="token string">"status_discovered"</span><span class="token operator">></span> <span class="token boolean">false</span> <span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>table<span class="token operator">></span>
+        <span class="token operator">&lt;</span>hr<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h2<span class="token operator">></span>
+        Device Discovery or Disconnect
+    <span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+    <span class="token operator">&lt;</span>button id <span class="token operator">=</span> <span class="token string">"btn_scan"</span> onclick<span class="token operator">=</span><span class="token string">"discoverOrdisconnectDevices()"</span><span class="token operator">></span>Start scan<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span>hr<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h2<span class="token operator">></span>Reading and Writing<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h3<span class="token operator">></span>Write Characteristic <span class="token operator">-</span> Randomise Lights<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>  
+    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_write"</span> onclick<span class="token operator">=</span><span class="token string">"randomLEDs(0)"</span><span class="token operator">></span>控制led行<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btu_write"</span> onclick<span class="token operator">=</span><span class="token string">"randomLEDs(1)"</span><span class="token operator">></span>控制led列<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h3<span class="token operator">></span>Read Characteristic <span class="token operator">-</span> Model number<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>  
+    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_read"</span> onclick<span class="token operator">=</span><span class="token string">"readModelNumber()"</span><span class="token operator">></span>Read Model number<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"model_number"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>h3<span class="token operator">></span>accelerometer_data<span class="token operator">&lt;</span><span class="token operator">/</span>h3<span class="token operator">></span>
+    <span class="token operator">&lt;</span>button id<span class="token operator">=</span><span class="token string">"btn_readAC"</span> onclick<span class="token operator">=</span><span class="token string">"accelerometer()"</span><span class="token operator">></span>Read accelerometer_data<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"ac_data"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span>hr<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span></code></pre>
-<h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p><img src="/loading.gif" data-original="https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200622214218.png" alt=""></p>
+<p>现象：</p>
+<p><img src="/loading.gif" data-original="https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200623134352.png" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1202,7 +1224,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="www.happy-air.fun/posts/41131.html">www.happy-air.fun/posts/41131.html</a>
+                    <a href="www.happy-air.fun/posts/13775.html">www.happy-air.fun/posts/13775.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1408,7 +1430,7 @@
         repo: 'ccit18081430115avicii.github.io',
         owner: 'ccit18081430115avicii',
         admin: "ccit18081430115avicii",
-        id: '2020-06-22T22-08-54',
+        id: '2020-06-25T15-22-23',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1692,9 +1714,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/13775.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200523224911.jpg" class="responsive-img" alt="网页控制行列">
+                        
+                        <span class="card-title">网页控制行列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            相关代码&lt;html>
+    &lt;head>
+        &lt;script>
+        var    selected_device; //选择设备
+        var    connected_server; 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Avicii
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/57220.html">
                     <div class="card-image">
@@ -1714,49 +1779,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Avicii
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/52094.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/sunflower-air/clouding/images/20200523225905.jpg" class="responsive-img" alt="读写特性">
-                        
-                        <span class="card-title">读写特性</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            1、通过读写特性读取BBC板名称2、控制LED灯的显示相关代码&lt;html>
-    &lt;head>
-        &lt;script>
-        var    selected_device;
-        var  
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
                             </span>
                         <span class="publish-author">
                             
